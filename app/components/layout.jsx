@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router';
-import {browserHistory} from 'react-router';
-import ajaxFunctions from '../../common/ajax-functions';
+import {Link, browserHistory} from 'react-router';
+import ajaxFunctions from '../common/ajax-functions';
 
 export default class Layout extends React.Component {
   constructor() {
@@ -54,7 +53,7 @@ export default class Layout extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link to="/" className="navbar-brand">App Home</Link>
+              <Link to="/" className="navbar-brand">ImageBoard <i className="fa fa-camera" aria-hidden="true"></i></Link>
             </div>
             <div className="collapse navbar-collapse" id="voting-app-navbar">
               <ul className="nav navbar-nav navbar-right">

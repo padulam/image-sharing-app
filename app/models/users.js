@@ -6,7 +6,8 @@ var User = new Schema({
     id: String,
     token: String,
     username: String,
-    displayName: String
+    displayName: String,
+    profileImage: String
   },
   created: Date
 });

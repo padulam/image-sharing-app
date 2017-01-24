@@ -27,9 +27,11 @@ module.exports = function(passport){
             return cb(null, user);
           }else{
             var newUser = new User();
+
             newUser.twitter.id = profile.id;
             newUser.twitter.username = profile.username;
             newUser.twitter.displayName = profile.displayName;
+            newUser.twitter.profileImage = profile._json['profile_image_url'];
             newUser.created = Date();
 
             newUser.save(function(err){

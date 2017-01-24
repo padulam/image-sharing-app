@@ -1,6 +1,19 @@
 module.exports = function(app, passport){
   var path = require('path');
   var dir = process.cwd();
+  var bodyParser = require('body-parser');
+  var jsonParser = bodyParser.json();
+  var ImageSharingApi = require('../controllers/api/image-sharing-api.js');
+
+  var imageSharingApi = new ImageSharingApi();
+
+  function loggedIn(request, response, next){
+    if(request.user!==undefined){
+      return next();
+    } else{
+      response.redirect('/')
+    }
+  }
 
   app.get('/', function(request, response){
     response.sendFile(path.resolve(dir, 'public', 'index.html'));
@@ -26,4 +39,6 @@ module.exports = function(app, passport){
       failureRedirect: '/',
       failureFlash: true
     }));
+
+  app.post('images', jsonParser, imageSharingApi.addImage);
 };
