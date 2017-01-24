@@ -40,5 +40,7 @@ module.exports = function(app, passport){
       failureFlash: true
     }));
 
-  app.post('images', jsonParser, imageSharingApi.addImage);
+  app.route('images')
+    .post(jsonParser, imageSharingApi.addImage)
+    .get(imageSharingApi.getImages);
 };

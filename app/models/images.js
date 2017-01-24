@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Image = new Schema({
+var Images = new Schema({
   url: String,
+  description: String,
   owner: String,
   likes: Array
 });

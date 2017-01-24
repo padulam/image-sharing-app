@@ -2,6 +2,8 @@ var Images = require('../../models/images.js');
 var Users = require('../../models/users.js');
 
 function ImageSharingApi(){
+  var self = this;
+
   this.addImage = function(request, response){
     var image = new Images();
 
@@ -13,7 +15,15 @@ function ImageSharingApi(){
     image.save(function(err){
       if(err) response.json({error: err});
 
-      response.json(image);
+      self.getImages(request, response);
+    });
+  };
+
+  this.getImages = function(request, response){
+    Images.find(function(err, images){
+      if(err) response.json({error: err});
+
+      response.json(images);
     });
   };
 }
