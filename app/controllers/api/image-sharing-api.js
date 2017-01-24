@@ -35,7 +35,7 @@ function ImageSharingApi(){
     });
   };
 
-  this.getUsersImages = function(request, repsonse){
+  this.getUsersImages = function(request, response){
     Images.find({"owner.username": request.user.twitter.username}, function(err, images){
       if(err) response.json({error: err});
 

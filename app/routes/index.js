@@ -45,4 +45,6 @@ module.exports = function(app, passport){
     .get(imageSharingApi.getImages);
 
   app.delete('/api/images/:image_id', imageSharingApi.removeImage);
+
+  app.get('/api/userimages', imageSharingApi.getUsersImages);
 };
