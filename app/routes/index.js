@@ -40,7 +40,9 @@ module.exports = function(app, passport){
       failureFlash: true
     }));
 
-  app.route('images')
+  app.route('/api/images')
     .post(jsonParser, imageSharingApi.addImage)
     .get(imageSharingApi.getImages);
+
+  app.delete('/api/images/:image_id', imageSharingApi.removeImage);
 };

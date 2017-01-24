@@ -26,6 +26,14 @@ function ImageSharingApi(){
       response.json(images);
     });
   };
+
+  this.removeImage = function(request, response){
+    Images.remove({_id: request.params.image_id}, function(err, image){
+      if(err) response.json({error: err});
+
+      self.getImages(request, response);
+    });
+  };
 }
 
 module.exports = ImageSharingApi;
