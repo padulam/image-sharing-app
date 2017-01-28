@@ -10,4 +10,72 @@ body{
 .footer {
   width: 100%;
   padding: .5%;
+  background-color: #F8F8F8;
+}
+
+.image-gallery{
+  margin: 0 auto;
+}
+
+.image-card{
+  padding: .5% .5% 1% .5%;
+  box-shadow: 1px 1px 1px black;
+  background-color: silver;
+  list-style-type: none;
+  margin-bottom: 1%;
+}
+
+.likeBtn{
+  background: none;
+  border: none;
+  float: right;
+}
+
+.profile-pic-likes-container{
+  color: black;
+  background-color: white;
+  margin: 0 auto;
+  padding: 2%;
+  border-radius: 5px;
+}
+
+.liked{
+  color: red;
+}
+
+.image-container{
+  margin-top: 3%;
+  padding: 20px;
+  min-height: 70px;
+  border-radius: 10px;
+  margin-bottom: 3%;
+}
+
+#addImageTitle{
+  margin: 3% 0%;
+}
+
+.image-jumbo{
+  padding: 3%;
+  margin: 0 auto;
+  min-height: 500px;
+}
+
+#removeButton{
+  height: 25px;
+  margin-left: 20px;
+  padding: 5px 12px 22px 12px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  font-size: .9em;
+}
+
+.description-container{
+  background-color: white;
+  text-align: center;
+  margin-top: 5%;
+  width: 80%;
+  color: black;
+  margin: 7% auto;
+  border-radius: 5px;
 }

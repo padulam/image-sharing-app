@@ -42,6 +42,26 @@ function ImageSharingApi(){
       response.json(images);
     });
   };
+
+  this.likeImage = function(request, response){
+    Images.findById(request.params.image_id, function(err, image){
+      if(err) response.json({error: err});
+
+      var likeLoc = image.likes.indexOf(request.user.twitter.username);
+      
+      if(likeLoc > -1){
+        image.likes.splice(likeLoc, 1);
+      } else{
+        image.likes.push(request.user.twitter.username);
+      }
+
+      image.save(function(err){
+        if(err) response.json({error: err});
+
+        self.getImages(request, response);
+      });
+    });
+  };
 }
 
 module.exports = ImageSharingApi;

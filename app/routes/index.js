@@ -19,6 +19,14 @@ module.exports = function(app, passport){
     response.sendFile(path.resolve(dir, 'public', 'index.html'));
   });
 
+  app.get('/my-images', function(request, response){
+    response.sendFile(path.resolve(dir, 'public', 'index.html'));
+  });
+
+  app.get('/add-image', function(request, response){
+    response.sendFile(path.resolve(dir, 'public', 'index.html'));
+  });
+
   app.route('/logout')
     .get(function(request, response){
       request.logout();
@@ -44,7 +52,9 @@ module.exports = function(app, passport){
     .post(jsonParser, imageSharingApi.addImage)
     .get(imageSharingApi.getImages);
 
-  app.delete('/api/images/:image_id', imageSharingApi.removeImage);
+  app.route('/api/images/:image_id')
+    .delete(imageSharingApi.removeImage)
+    .put(loggedIn, imageSharingApi.likeImage);
 
   app.get('/api/userimages', imageSharingApi.getUsersImages);
 };

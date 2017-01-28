@@ -10,8 +10,7 @@ export default class Layout extends React.Component {
     super();
 
     this.state = {
-      user: undefined, 
-      images: []
+      user: undefined
     }
 
     this._AuthenticateTwitter = this._AuthenticateTwitter.bind(this);
@@ -23,6 +22,10 @@ export default class Layout extends React.Component {
 
   _DeauthenticateTwitter(){
     window.location = '/logout';
+  }
+
+  componentWillMount() {
+    this._GetUserData();
   }
 
   _GetUserData(){
@@ -37,41 +40,11 @@ export default class Layout extends React.Component {
     }));
   }
 
-  _fetchImages(){
-    let appUrl = window.location.origin;
-    let apiUrl = appUrl + '/api/images';
-    let self = this;
-
-    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function(data){
-      let images = JSON.parse(data);
-
-      self.setState({images: images});
-    }));
-  }
-
-  _addImage(imageUrl, imageDesc){
-    let appUrl = window.location.origin;
-    let apiUrl = appUrl + '/api/images';
-    let self = this;
-    let imageData = {url: imageUrl, description: imageDesc};
-
-    ajaxFunctions.ajaxRequest('POST', apiUrl, function(data){
-      let images = JSON.parse(data);
-      console.log(images);
-
-      self.setState({images: images});
-    }, imageData);
-  }
-
-  componentWillMount() {
-    this._GetUserData();
-    this._fetchImages();
-  }
-
   render(){
-    let addImage;
     let userProfile;
+    let myImages;
     let signIn;
+    let addImage;
 
     if(!this.state.user){
       signIn = <SignIn AuthenticateTwitter={this._AuthenticateTwitter}/>;
@@ -85,7 +58,8 @@ export default class Layout extends React.Component {
             <li className="text-center"><SignOut DeauthenticateTwitter={this._DeauthenticateTwitter} /></li>
             </ul>
           </li>);
-      addImage = <AddImage addImage={this._addImage.bind(this)}/>;
+      
+      addImage = <li><Link to="/add-image">Add Image</Link></li>;
     }
 
     return(
